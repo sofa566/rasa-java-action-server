@@ -74,3 +74,5 @@ For example:
 action_endpoint:
   url: "http://localhost:5055/webhook"
 ```
+#### 4. start botfront using docker-compose
+$ docker-compose -f docker-compose-java.yml up
