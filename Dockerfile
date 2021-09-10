@@ -6,6 +6,9 @@ COPY .mvn .mvn
 COPY pom.xml .
 COPY src src
 
+COPY libs libs
+RUN ./mvnw install:install-file -Dfile=libs/rasa-java-sdk-2.3.0.jar -DgroupId=io.github.rbajek -DartifactId=rasa-java-sdk -Dversion=2.3.0 -Dpackaging=jar
+
 RUN ./mvnw install \
    && mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
