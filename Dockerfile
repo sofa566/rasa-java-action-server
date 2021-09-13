@@ -14,8 +14,11 @@ RUN ./mvnw install \
 
 FROM openjdk:8-jre-alpine
 USER root
+RUN apk update && apk upgrade  \
+    && apk add --update tzdata && cp /usr/share/zoneinfo/Asia/Taipei /etc/localtime \
+    && echo "Asia/Taipei" > /etc/timezone \
+    && rm -rf /var/cache/apk/*
 ENV TZ=Asia/Taipei
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN addgroup -S rasa && adduser -S rasa -G rasa
 # VOLUME /t
